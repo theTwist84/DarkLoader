@@ -185,7 +185,7 @@ namespace DarkLoader
         private void CheckForUpdates()
         {
             GoogleAnalyticsApi.TrackEvent("MainForm.cs", "CheckForUpdates", "");
-            var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Versions.json";
+            var url = "https://raw.githubusercontent.com/theTwist84/DarkLoader/master/DarkLoader-Versions.json";
             try
             {
                 var versionJson = (new WebClient()).DownloadString(url);
@@ -477,7 +477,7 @@ namespace DarkLoader
         private void btnIssues_Click(object sender, EventArgs e)
         {
             GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnIssues_Click","");
-            Process.Start("https://github.com/dark-c0de/DarkLoader/issues", "");
+            Process.Start("https://github.com/theTwist84/DarkLoader/issues", "");
         }
 
         private void btnHideHud_Click(object sender, EventArgs e)
