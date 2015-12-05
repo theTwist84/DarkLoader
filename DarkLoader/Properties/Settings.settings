@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="HOLaunchArguments" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-window</Value>
+      <Value Profile="(Default)">-fullscreen</Value>
     </Setting>
   </Settings>
 </SettingsFile>
