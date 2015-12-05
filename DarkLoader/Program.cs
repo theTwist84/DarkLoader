@@ -46,7 +46,7 @@ namespace DarkLoader
             //If they don't have a version, let's download the latest from GitHub
             if (!File.Exists("DarkLoader-Versions.json") || force)
             {
-                var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Versions.json";
+                var url = "https://raw.githubusercontent.com/theTwist84/DarkLoader/master/DarkLoader-Versions.json";
                 try
                 {
                     var versionFile = (new WebClient()).DownloadString(url);
@@ -65,7 +65,7 @@ namespace DarkLoader
             //If they don't have a patch file, let's download the latest from GitHub
             if (!File.Exists(PatchFile) || force)
             {
-                var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Patches.json";
+                var url = "https://raw.githubusercontent.com/theTwist84/DarkLoader/master/DarkLoader-Patches.json";
                 try
                 {
                     var patchFile = (new WebClient()).DownloadString(url);
