@@ -19,8 +19,10 @@ namespace DarkLoader
     public partial class PatchEditor : Form
     {
         public static IntPtr CurrentPatchAddress;
+        static PatchEditor pbScann;
         MagicPatches.Patches patches;
         public static bool FormShowing = false;
+
         public PatchEditor()
         {
             InitializeComponent();
@@ -29,9 +31,10 @@ namespace DarkLoader
         {
             try
             {
-                pbScan.Maximum = Convert.ToInt32(max / 1024 / 1024);
-                pbScan.Minimum = Convert.ToInt32(min / 1024 / 1024);
-                pbScan.Value = Convert.ToInt32(value / 1024 / 1024);
+
+                pbScann.pbScan.Maximum = Convert.ToInt32(max / 1024 / 1024);
+                pbScann.pbScan.Minimum = Convert.ToInt32(min / 1024 / 1024);
+                pbScann.pbScan.Value = Convert.ToInt32(value / 1024 / 1024);
             }
             catch(Exception){
 
@@ -41,7 +44,7 @@ namespace DarkLoader
         {
 
 
-            if (MainForm.HaloIsRunning)
+            if (MainForm.gameIsRunning)
             {
                 MagicPatches.PatchLoopRun = true;
                 btnPatternScanStop.Enabled = true;
@@ -254,7 +257,7 @@ namespace DarkLoader
         private void btnTestPatchWrite_click(object sender, EventArgs e)
         {
  
-            if (MainForm.HaloIsRunning)
+            if (MainForm.gameIsRunning)
             {
                 MagicPatches.PatchLoopRun = true;
                 btnPatternScanStop.Enabled = true;

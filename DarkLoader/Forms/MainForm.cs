@@ -19,11 +19,13 @@ namespace DarkLoader
     public partial class MainForm : Form
     {
         public static Process Game;
-        public static bool HaloIsRunning = false;
+        public static bool gameIsRunning = false;
 
         //Lets keep the previous scan in memory so only the first scan is slow.
         IntPtr pAddr;
         IntPtr MpPatchAddr;
+
+        
 
         bool WeRunningYup = false;
 
@@ -37,7 +39,7 @@ namespace DarkLoader
             LogFile.WriteToLog("Started RogueLoader");
 
             LaunchArgumentsForm.Text = RogueLoader.Properties.Settings.Default.LaunchArgs;
-            GameName.Text = RogueLoader.Properties.Settings.Default.GameName;
+            GameName.Text = RogueLoader.Properties.Settings.Default.ProcessName;
             Thread loadPatches = new Thread(MagicPatches.LoadPatches);
             loadPatches.Start();
         }
@@ -95,14 +97,16 @@ namespace DarkLoader
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             WeRunningYup = false;
         }
 
 
         private void LaunchGeme_click(object sender, EventArgs e)
         {
+            WeRunningYup = true;
+
             LaunchGame();
+
         }
 
         private void LaunchGame()
@@ -114,9 +118,9 @@ namespace DarkLoader
                 process.Kill();
                 process.WaitForExit();
             }
-
             //Set Variables so game can launch through RogueLoader
-            Game.StartInfo.FileName = GameName.Text + ".exe";
+            Game = new System.Diagnostics.Process();
+            Game.StartInfo.FileName = RogueLoader.Properties.Settings.Default.ProcessName + ".exe";
             Game.StartInfo.WorkingDirectory = Application.StartupPath;
             Game.StartInfo.Arguments = LaunchArgumentsForm.Text;
             Game.Start();
@@ -154,11 +158,15 @@ namespace DarkLoader
         private void LaunchArgumentsForm_TextChanged(object sender, EventArgs e)
         {
             RogueLoader.Properties.Settings.Default.LaunchArgs = LaunchArgumentsForm.Text;
+            RogueLoader.Properties.Settings.Default.Save();
+            LogFile.WriteToLog("Launch Arguments Changed!");
         }
 
         private void GameName_TextChanged(object sender, EventArgs e)
         {
-            RogueLoader.Properties.Settings.Default.GameName = GameName.Text;
+            RogueLoader.Properties.Settings.Default.ProcessName = GameName.Text;
+            RogueLoader.Properties.Settings.Default.Save();
+            LogFile.WriteToLog("Saved Process Name Changed!");
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)

@@ -5,8 +5,8 @@
     <Setting Name="LaunchArgs" Type="System.String" Scope="User">
       <Value Profile="(Default)">-noserver -debugattach -debug</Value>
     </Setting>
-    <Setting Name="GameName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">TheDivision.exe</Value>
+    <Setting Name="ProcessName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TheDivision</Value>
     </Setting>
   </Settings>
 </SettingsFile>

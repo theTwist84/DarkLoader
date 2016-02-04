@@ -29,7 +29,7 @@ namespace DarkLoader
             bv = new ByteViewer();
             bv.Dock = DockStyle.Fill;
             Controls.Add(bv);
-            if (MainForm.HaloIsRunning)
+            if (MainForm.gameIsRunning)
             {
                 LoadMemoryView();
             }

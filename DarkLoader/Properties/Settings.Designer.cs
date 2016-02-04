@@ -37,13 +37,13 @@ namespace RogueLoader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("TheDivision.exe")]
-        public string GameName {
+        [global::System.Configuration.DefaultSettingValueAttribute("TheDivision")]
+        public string ProcessName {
             get {
-                return ((string)(this["GameName"]));
+                return ((string)(this["ProcessName"]));
             }
             set {
-                this["GameName"] = value;
+                this["ProcessName"] = value;
             }
         }
     }
