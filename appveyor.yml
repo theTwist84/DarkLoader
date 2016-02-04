@@ -14,7 +14,7 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 build:
-  project: DarkLoader.sln
+  project: Rogueloader.sln
   verbosity: normal
 
 # scripts to run after build
@@ -22,7 +22,7 @@ before_build:
   - nuget restore
 after_build:
   - cd c:\projects\rogueloader
-  - copy c:\projects\rogueloader\DarkLoader\bin\Release\DarkLoader.exe c:\projects\rogueloader\DarkLoader.exe
+  - copy c:\projects\rogueloader\DarkLoader\bin\Release\RogueLoader.exe c:\projects\rogueloader\RogueLoader.exe
 artifacts:
-  - path: DarkLoader.exe
-    name: DarkLoader.exe
+  - path: RogueLoader.exe
+    name: RogueLoader.exe
