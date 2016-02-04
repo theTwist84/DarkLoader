@@ -1,7 +1,7 @@
 version: 1.0.1.{build}
 
 # clone directory
-clone_folder: c:\projects\darkloader
+clone_folder: c:\projects\rogueloader
 
 configuration: Release
 platform: Any CPU
@@ -21,8 +21,8 @@ build:
 before_build:
   - nuget restore
 after_build:
-  - cd c:\projects\darkloader
-  - copy c:\projects\darkloader\DarkLoader\bin\Release\DarkLoader.exe c:\projects\darkloader\DarkLoader.exe
+  - cd c:\projects\rogueloader
+  - copy c:\projects\rogueloader\DarkLoader\bin\Release\DarkLoader.exe c:\projects\rogueloader\DarkLoader.exe
 artifacts:
   - path: DarkLoader.exe
     name: DarkLoader.exe
