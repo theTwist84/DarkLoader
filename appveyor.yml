@@ -26,3 +26,7 @@ after_build:
 artifacts:
   - path: RogueLoader.exe
     name: RogueLoader.exe
+  - path: RogueLoader-Patches.json
+    name: RogueLoader-Patches.json
+  - path: RogueLoader-Versions.json
+    name: RogueLoader-Versions.json
