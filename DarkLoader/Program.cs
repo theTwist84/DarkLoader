@@ -29,7 +29,7 @@ namespace DarkLoader
             if (!File.Exists(Application.StartupPath + @"\maps\tags.dat"))
             {
 
-                MessageBox.Show("Please load DarkLoader from your Halo Online Installation Directory.", "Halo.Click - DarkLoader");
+                MessageBox.Show("Please load RogueLoader from your Halo Online Installation Directory.", "Halo.Click - DarkLoader");
                 Application.Exit();
             }
             else
@@ -46,7 +46,7 @@ namespace DarkLoader
             //If they don't have a version, let's download the latest from GitHub
             if (!File.Exists("RogueLoader-Versions.json") || force)
             {
-                var url = "https://raw.githubusercontent.com/no1dead/DarkLoader/master/RogueLoader-Versions.json";
+                var url = "https://raw.githubusercontent.com/no1dead/RogueLoader/master/RogueLoader-Versions.json";
                 try
                 {
                     var versionFile = (new WebClient()).DownloadString(url);
@@ -65,7 +65,7 @@ namespace DarkLoader
             //If they don't have a patch file, let's download the latest from GitHub
             if (!File.Exists(PatchFile) || force)
             {
-                var url = "https://raw.githubusercontent.com/no1dead/DarkLoader/master/DarkLoader-Patches.json";
+                var url = "https://raw.githubusercontent.com/no1dead/RogueLoader/master/RogueLoader-Patches.json";
                 try
                 {
                     var patchFile = (new WebClient()).DownloadString(url);
