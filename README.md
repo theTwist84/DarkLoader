@@ -1,4 +1,4 @@
-# RogueLoader [![Build status](https://ci.appveyor.com/api/projects/status/evq3v5pgw6wxegi4?svg=true)](https://ci.appveyor.com/project/no1dead/rogueloader)
+# RogueLoader [![Build status](https://ci.appveyor.com/api/projects/status/90xhjd3oxppggxw0?svg=true)](https://ci.appveyor.com/project/no1dead/rogueloader)
 
 
 Rogueloader is a tool aimed to work with all programs doing real time memory edits using pattern scanning with its primary focus being Tom Clancy's The Division
