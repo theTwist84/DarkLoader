@@ -18,6 +18,7 @@ You can easily help us by building patches, no C# compiling required. Check out 
 1. Hook Console for command access.
 2. Hook into Scripts Engine To call scripts.
 3. etc anything else that might be needed.
+4. Get the game running without using a modified DLL.
 
 
 ### TODO
