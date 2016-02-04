@@ -1,12 +1,49 @@
-﻿- Clean this mess up
-- Create a function you can send a pattern to that will lookup the address if it doesn't already exist. If it does exist, don't look it up again, just pass the original address.
-- Allow functionality for multiple Halo Online instances to be loaded for debugging purposes
-- Camera Mode Switch (valid modes: default, first, third)
-- Center Crosshair Fix
-- Fov Slider
-- VirtualAllocEx VirtualProtectEx 
-- Create a config file to store patterns to load and use. On first run, scan all the patterns and enable\disable functionality based on what patterns succeeded and which ones failed.
-- Don't run a pattern scan when a user hits a button like Show\Hide hud. The pattern scan should already have taken place before and had been cached.
-- Store pattern locations out to disk for debug purposes, allow people to share + add functionality and patterns without needing to compile C# code.
-- ?????
-- ??? MULTIPLAYER ???
+﻿Hook into potential console and scripts functions.
+
+00007FF671179200 | 48 8D 05 11 98 31 02     | lea rax,qword ptr ds:[7FF673492A18]     | ;7FF673492A18:"Execute console command"
+00007FF671179290 | 48 8D 05 89 90 31 02     | lea rax,qword ptr ds:[7FF673492320]     | ;7FF673492320:"Set variable"
+00007FF671179210 | 48 8D 05 51 95 31 02     | lea rax,qword ptr ds:[7FF673492768]     | ;7FF673492768:"Begin a script"
+00007FF671179230 | 48 8D 05 A1 94 31 02     | lea rax,qword ptr ds:[7FF6734926D8]     | ;7FF6734926D8:"Load and run a script"
+00007FF6713198C8 | 48 8D 15 79 62 1C 02     | lea rdx,qword ptr ds:[7FF6734DFB48]     | ;7FF6734DFB48:"Utilities/System/Execute Console Command"
+00007FF6713198CF | 48 8D 0D A2 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB78]     | ;7FF6734DFB78:"native:ConsoleCommand"
+00007FF67131989C | 48 8D 0D 85 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB28]     | ;7FF6734DFB28:"native:ConsoleCommandWithOutput"
+00007FF671606E5E | 48 8D 05 CB 2E F9 01     | lea rax,qword ptr ds:[7FF673599D30]     | ;7FF673599D30:"Client/Game Actions/Set Debug Mode"
+00007FF67264EB67 | 48 8D 05 52 F4 4A 01     | lea rax,qword ptr ds:[7FF673AFDFC0]     | ;7FF673AFDFC0:"Debug/UI/Is Debug Menu Enabled"
+00007FF67264EB52 | 48 8D 05 87 F4 4A 01     | lea rax,qword ptr ds:[7FF673AFDFE0]     | ;7FF673AFDFE0:"Debug:IsDebugMenuEnabled"
+00007FF67264EC5B | 48 8D 05 CE F3 4A 01     | lea rax,qword ptr ds:[7FF673AFE030]     | ;7FF673AFE030:"Debug/UI/Get Command Lines"
+00007FF67264EC46 | 48 8D 05 03 F4 4A 01     | lea rax,qword ptr ds:[7FF673AFE050]     | ;7FF673AFE050:"Debug:GetCommandLines"
+
+
+Other Graphics Hooks
+
+00007FF67224E884 | 48 8D 05 BD 58 67 01     | lea rax,qword ptr ds:[7FF6738C4148]     | ;7FF6738C4148:"RClient:RClient_LocalPlayerCameraFov"
+00007FF67224E899 | 48 8D 05 88 58 67 01     | lea rax,qword ptr ds:[7FF6738C4128]     | ;7FF6738C4128:"Client/Player/Camera FOV"
+
+Force Respawn
+
+00007FF67224FBBC | 48 8D 05 3D 55 67 01     | lea rax,qword ptr ds:[7FF6738C5100]     | ;7FF6738C5100:"RClient:RClient_LocalPlayerRespawn"
+00007FF67224FBD1 | 48 8D 05 10 55 67 01     | lea rax,qword ptr ds:[7FF6738C50E8]     | ;7FF6738C50E8:"Client/Player/Respawn"
+
+Force Weapon Equip?
+
+00007FF6722516EC | 48 8D 05 ED 4D 67 01     | lea rax,qword ptr ds:[7FF6738C64E0]     | ;7FF6738C64E0:"RClient_LocalPlayerGetWeaponToEquip"
+00007FF672251701 | 48 8D 05 B0 4D 67 01     | lea rax,qword ptr ds:[7FF6738C64B8]     | ;7FF6738C64B8:"Client/Player/Get Weapon To Equip"
+
+Out Of Bounds Hooks
+
+00007FF67225123C | 48 8D 05 4D 4F 67 01     | lea rax,qword ptr ds:[7FF6738C6190]     | ;7FF6738C6190:"RClient_LocalPlayerGetOutOfWorldTimeLeft"
+00007FF672251251 | 48 8D 05 08 4F 67 01     | lea rax,qword ptr ds:[7FF6738C6160]     | ;7FF6738C6160:"Client/Player/Get Player Out Of World Time Left"
+00007FF67225132C | 48 8D 05 15 4F 67 01     | lea rax,qword ptr ds:[7FF6738C6248]     | ;7FF6738C6248:"RClient_LocalPlayerCanReturnToOwnDZBracketNode"
+
+
+00007FF6722512C9 | 48 8D 05 F0 4E 67 01     | lea rax,qword ptr ds:[7FF6738C61C0]     | ;7FF6738C61C0:"Client/Player/Teleport Player Into World"
+00007FF6722512B4 | 48 8D 05 35 4F 67 01     | lea rax,qword ptr ds:[7FF6738C61F0]     | ;7FF6738C61F0:"RClient_LocalPlayerTeleportIntoWorld"
+
+
+00007FF6722511D9 | 48 8D 05 38 4F 67 01     | lea rax,qword ptr ds:[7FF6738C6118]     | ;7FF6738C6118:"Client/Player/Is Player Out Of World"
+00007FF6722511C4 | 48 8D 05 75 4F 67 01     | lea rax,qword ptr ds:[7FF6738C6140]     | ;7FF6738C6140:"RClient_LocalPlayerIsOutOfWorld"
+
+Uplay
+
+00007FF67273649B | 48 8D 05 AE E9 45 01     | lea rax,qword ptr ds:[7FF673B94E50]     | ;7FF673B94E50:"Client/Uplay/Is Uplay Open"
+00007FF672736515 | 48 8D 05 74 E9 45 01     | lea rax,qword ptr ds:[7FF673B94E90]     | ;7FF673B94E90:"Client/Uplay/Is Ubiservices unavailable"
