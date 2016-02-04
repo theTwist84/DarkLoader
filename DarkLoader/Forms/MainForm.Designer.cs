@@ -70,6 +70,7 @@
             this.LaunchGeme.TabIndex = 1;
             this.LaunchGeme.Text = "Launch Game";
             this.LaunchGeme.UseVisualStyleBackColor = true;
+            this.LaunchGeme.Click += new System.EventHandler(this.LaunchGeme_click);
             // 
             // btnPatchEditor
             // 

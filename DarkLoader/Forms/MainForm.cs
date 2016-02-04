@@ -30,7 +30,6 @@ namespace DarkLoader
         public MainForm()
         {
             InitializeComponent();
-   
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -42,7 +41,6 @@ namespace DarkLoader
             Thread loadPatches = new Thread(MagicPatches.LoadPatches);
             loadPatches.Start();
         }
-        bool inLauncherLoop = false;
 
         private void CheckForUpdates()
         {
@@ -102,18 +100,40 @@ namespace DarkLoader
         }
 
 
-        private void btnLaunchGeme_click()
+        private void LaunchGeme_click(object sender, EventArgs e)
         {
             LaunchGame();
         }
 
         private void LaunchGame()
         {
-            Game.StartInfo.FileName = GameName.Text;
+            var rogueProcesses = Process.GetProcesses().Where(pr => pr.ProcessName.Contains("_rogued"));
+
+            foreach (var process in rogueProcesses)
+            {
+                process.Kill();
+                process.WaitForExit();
+            }
+
+            //Set Variables so game can launch through RogueLoader
+            Game.StartInfo.FileName = GameName.Text + ".exe";
             Game.StartInfo.WorkingDirectory = Application.StartupPath;
             Game.StartInfo.Arguments = LaunchArgumentsForm.Text;
-        }
+            Game.Start();
 
+
+            //Freeze process to allow startup patches to be run.
+            Thread.Sleep(3000);
+            Memory.SuspendProcess(Game.Id);
+            MagicPatches.RunStartupPatches();
+            Memory.ResumeProcess(Game.Id);
+
+            //Run Exe Patches and save to file with a _rogued suffix.
+            byte[] GameMagicExe = File.ReadAllBytes(Application.StartupPath + @"\" + GameName.Text + ".exe");
+            string tmpExe = Path.Combine(Application.StartupPath, GameName.Text + "_rogued.exe");
+            MagicPatches.ExePatches(GameMagicExe);
+            File.WriteAllBytes(tmpExe, GameMagicExe);
+            }
 
 
         PatchEditor patchy;

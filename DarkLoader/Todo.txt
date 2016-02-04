@@ -1,12 +1,24 @@
-﻿Hook into potential console and scripts functions.
+﻿
 
+
+Hook into potential console and scripts functions.
+
+00007FF671319895 | 48 8D 15 64 62 1C 02     | lea rdx,qword ptr ds:[7FF6734DFB00]     | ;7FF6734DFB00:"Utilities/System/Console Command"
+00007FF67131989C | 48 8D 0D 85 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB28]     | ;7FF6734DFB28:"native:ConsoleCommandWithOutput"
 00007FF671179200 | 48 8D 05 11 98 31 02     | lea rax,qword ptr ds:[7FF673492A18]     | ;7FF673492A18:"Execute console command"
 00007FF671179290 | 48 8D 05 89 90 31 02     | lea rax,qword ptr ds:[7FF673492320]     | ;7FF673492320:"Set variable"
-00007FF671179210 | 48 8D 05 51 95 31 02     | lea rax,qword ptr ds:[7FF673492768]     | ;7FF673492768:"Begin a script"
-00007FF671179230 | 48 8D 05 A1 94 31 02     | lea rax,qword ptr ds:[7FF6734926D8]     | ;7FF6734926D8:"Load and run a script"
 00007FF6713198C8 | 48 8D 15 79 62 1C 02     | lea rdx,qword ptr ds:[7FF6734DFB48]     | ;7FF6734DFB48:"Utilities/System/Execute Console Command"
 00007FF6713198CF | 48 8D 0D A2 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB78]     | ;7FF6734DFB78:"native:ConsoleCommand"
 00007FF67131989C | 48 8D 0D 85 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB28]     | ;7FF6734DFB28:"native:ConsoleCommandWithOutput"
+
+
+Scripts
+
+00007FF671179210 | 48 8D 05 51 95 31 02     | lea rax,qword ptr ds:[7FF673492768]     | ;7FF673492768:"Begin a script"
+00007FF671179230 | 48 8D 05 A1 94 31 02     | lea rax,qword ptr ds:[7FF6734926D8]     | ;7FF6734926D8:"Load and run a script"
+
+Debug Mode
+
 00007FF671606E5E | 48 8D 05 CB 2E F9 01     | lea rax,qword ptr ds:[7FF673599D30]     | ;7FF673599D30:"Client/Game Actions/Set Debug Mode"
 00007FF67264EB67 | 48 8D 05 52 F4 4A 01     | lea rax,qword ptr ds:[7FF673AFDFC0]     | ;7FF673AFDFC0:"Debug/UI/Is Debug Menu Enabled"
 00007FF67264EB52 | 48 8D 05 87 F4 4A 01     | lea rax,qword ptr ds:[7FF673AFDFE0]     | ;7FF673AFDFE0:"Debug:IsDebugMenuEnabled"
