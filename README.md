@@ -8,6 +8,13 @@ Anyone is welcome to help work on RogueLoader, so please, please do!
 
 You can easily help us by building patches, no C# compiling required. Check out the [PatchEditor](https://github.com/dark-c0de/DarkLoader/wiki/Patch-Editor)
 
+## Setup
+* You need the CODEX 1.2 or 1.0 Siege DLL (Will remove the dependency on this for Division)
+
+## Usage
+* Put RogueLoader beside the exe of choice and run it. (Will add a Process List soon)
+* Change textboxes to your liking.
+
 ## Tested Versions
 * 1.0 Beta Build
 
