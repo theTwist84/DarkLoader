@@ -181,7 +181,7 @@ namespace DarkLoader
         public static void PatchSingleAddress(Patch patch, IntPtr address)
         {
             byte[] patchBytes = HelperFunctions.StringToByteArray(patch.patch);
-            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.HaloOnline.Id);
+            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.Game.Id);
 
             Memory.WriteProtectedMemory(p, address, patchBytes, patchBytes.Length);
         }
@@ -191,10 +191,10 @@ namespace DarkLoader
             LogFile.WriteToLog("Starting recursive memory patch for " + patch.title);
             byte[] patchBytes = HelperFunctions.StringToByteArray(patch.patch);
             byte[] patternBytes = HelperFunctions.StringToByteArray(patch.pattern);
-            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.HaloOnline.Id);
+            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.Game.Id);
             IntPtr PatchReturnAddress;
 
-            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.HaloOnline, patternBytes, patch.match, patch.offset);
+            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.Game, patternBytes, patch.match, patch.offset);
 
             if (PatchReturnAddress == null || PatchReturnAddress.ToInt32() <= 0)
             {
@@ -209,7 +209,7 @@ namespace DarkLoader
                     LogFile.WriteToLog("Recursive Memory Patch (" + patch.title + ") found and patched at " + PatchReturnAddress.ToString("X"));
                     patched = true;
                     IntPtr startOffset = PatchReturnAddress + 0x1;
-                    PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.HaloOnline, patternBytes, patch.match, patch.offset, startOffset);
+                    PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.Game, patternBytes, patch.match, patch.offset, startOffset);
                 }
                 return patched;
             }
@@ -220,10 +220,10 @@ namespace DarkLoader
         {
             byte[] patchBytes = HelperFunctions.StringToByteArray(patch.patch);
             byte[] patternBytes = HelperFunctions.StringToByteArray(patch.pattern);
-            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.HaloOnline.Id);
+            IntPtr p = Memory.OpenProcess(0x001F0FFF, true, MainForm.Game.Id);
             IntPtr PatchReturnAddress;
 
-            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.HaloOnline, patternBytes, patch.match, patch.offset);
+            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.Game, patternBytes, patch.match, patch.offset);
 
             if (PatchReturnAddress == null || PatchReturnAddress.ToInt32() <= 0)
             {

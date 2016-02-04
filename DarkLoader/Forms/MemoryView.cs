@@ -38,7 +38,7 @@ namespace DarkLoader
 
             byte[] someBytes = new byte[512];
 
-            IntPtr pw = Memory.OpenProcess(0x001F0FFF, true, MainForm.HaloOnline.Id);
+            IntPtr pw = Memory.OpenProcess(0x001F0FFF, true, MainForm.Game.Id);
 
             int readAt = (int)PatchEditor.CurrentPatchAddress;
             someBytes = Memory.ReadMemory((int)pw, readAt, 512);

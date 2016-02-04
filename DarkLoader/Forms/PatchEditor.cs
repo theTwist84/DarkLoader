@@ -63,7 +63,7 @@ namespace DarkLoader
             byte[] searchBytePattern = HelperFunctions.StringToByteArray(txtPatternBytesSearch.Text);
             string match = txtPatternMatch.Text;
             int offset = Convert.ToInt32(txtPatternOffset.Text);
-            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.HaloOnline, searchBytePattern, match, offset);
+            PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.Game, searchBytePattern, match, offset);
 
             if (PatchReturnAddress == null || PatchReturnAddress.ToInt32() <= 0)
             {
@@ -80,7 +80,7 @@ namespace DarkLoader
                         listPatternResults.Items.Add(PatchReturnAddress.ToString("X"));
                     });
                     IntPtr startOffset = PatchReturnAddress + 0x1;
-                    PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.HaloOnline, searchBytePattern, match, offset, startOffset);
+                    PatchReturnAddress = MagicPatches.ScanForPattern(MainForm.Game, searchBytePattern, match, offset, startOffset);
                 }
             }
             this.Invoke((MethodInvoker)delegate()

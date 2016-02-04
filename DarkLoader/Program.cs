@@ -25,19 +25,9 @@ namespace DarkLoader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            if (!File.Exists(Application.StartupPath + @"\maps\tags.dat"))
-            {
-
-                MessageBox.Show("Please load RogueLoader from your Halo Online Installation Directory.", "Halo.Click - DarkLoader");
-                Application.Exit();
-            }
-            else
-            {
-                GetVersionJson();
-                GetLatestPatchJson();
-                Application.Run(new MainForm());
-            }
+            GetVersionJson();
+            GetLatestPatchJson();
+            Application.Run(new MainForm());
         }
 
         public static void GetVersionJson(bool force = false)

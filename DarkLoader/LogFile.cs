@@ -11,9 +11,9 @@ namespace DarkLoader
     {
         public static void WriteToLog(string text)
         {
-            using (StreamWriter sw = File.AppendText("DarkLoader.log"))
+            using (StreamWriter sw = File.AppendText("Rogue.log"))
             {
-                sw.WriteLine(text);
+                sw.WriteLine(System.DateTime.Now + ":" + text);
             }
         }
     }

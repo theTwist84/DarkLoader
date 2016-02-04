@@ -26,12 +26,24 @@ namespace RogueLoader.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-window")]
-        public string HOLaunchArguments {
+        public string LaunchArgs {
             get {
-                return ((string)(this["HOLaunchArguments"]));
+                return ((string)(this["LaunchArgs"]));
             }
             set {
-                this["HOLaunchArguments"] = value;
+                this["LaunchArgs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TheDivision.exe")]
+        public string GameName {
+            get {
+                return ((string)(this["GameName"]));
+            }
+            set {
+                this["GameName"] = value;
             }
         }
     }
