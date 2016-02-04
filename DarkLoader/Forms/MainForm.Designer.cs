@@ -36,6 +36,8 @@
             this.LaunchPad = new System.Windows.Forms.GroupBox();
             this.GameName = new System.Windows.Forms.TextBox();
             this.LaunchArgumentsForm = new System.Windows.Forms.TextBox();
+            this.ProgramNameText = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.DevTools.SuspendLayout();
             this.LaunchPad.SuspendLayout();
             this.SuspendLayout();
@@ -84,19 +86,21 @@
             // 
             // LaunchPad
             // 
+            this.LaunchPad.Controls.Add(this.label1);
+            this.LaunchPad.Controls.Add(this.ProgramNameText);
             this.LaunchPad.Controls.Add(this.GameName);
             this.LaunchPad.Controls.Add(this.LaunchArgumentsForm);
             this.LaunchPad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.LaunchPad.Location = new System.Drawing.Point(12, 75);
             this.LaunchPad.Name = "LaunchPad";
-            this.LaunchPad.Size = new System.Drawing.Size(688, 57);
+            this.LaunchPad.Size = new System.Drawing.Size(688, 81);
             this.LaunchPad.TabIndex = 16;
             this.LaunchPad.TabStop = false;
             this.LaunchPad.Text = "Launch Args";
             // 
             // GameName
             // 
-            this.GameName.Location = new System.Drawing.Point(10, 20);
+            this.GameName.Location = new System.Drawing.Point(10, 50);
             this.GameName.Name = "GameName";
             this.GameName.Size = new System.Drawing.Size(329, 21);
             this.GameName.TabIndex = 17;
@@ -104,17 +108,39 @@
             // 
             // LaunchArgumentsForm
             // 
-            this.LaunchArgumentsForm.Location = new System.Drawing.Point(353, 20);
+            this.LaunchArgumentsForm.Location = new System.Drawing.Point(353, 50);
             this.LaunchArgumentsForm.Name = "LaunchArgumentsForm";
             this.LaunchArgumentsForm.Size = new System.Drawing.Size(329, 21);
             this.LaunchArgumentsForm.TabIndex = 16;
             this.LaunchArgumentsForm.TextChanged += new System.EventHandler(this.LaunchArgumentsForm_TextChanged);
             // 
+            // ProgramNameText
+            // 
+            this.ProgramNameText.AutoSize = true;
+            this.ProgramNameText.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ProgramNameText.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.ProgramNameText.Location = new System.Drawing.Point(10, 31);
+            this.ProgramNameText.Name = "ProgramNameText";
+            this.ProgramNameText.Size = new System.Drawing.Size(183, 13);
+            this.ProgramNameText.TabIndex = 18;
+            this.ProgramNameText.Text = "Program Name (Excluding Extension)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label1.Location = new System.Drawing.Point(359, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Launch Args";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 150);
+            this.ClientSize = new System.Drawing.Size(712, 168);
             this.Controls.Add(this.LaunchPad);
             this.Controls.Add(this.DevTools);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,6 +167,8 @@
         private System.Windows.Forms.Button LaunchGeme;
         private System.Windows.Forms.TextBox GameName;
         private System.Windows.Forms.Button SaveSettings;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ProgramNameText;
     }
 }
 

@@ -565,7 +565,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "PatchEditor";
-            this.Text = "DarkLoader - PatchEditor";
+            this.Text = "PatchEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatchEditor_FormClosing);
             this.Load += new System.EventHandler(this.PatchEditor_Load);
             this.grpScanBytes.ResumeLayout(false);

@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\Icon.ico" />
     <Content Include="Thanks.ico" />
     <Content Include="Todo.txt" />
   </ItemGroup>
