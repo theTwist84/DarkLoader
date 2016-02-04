@@ -15,9 +15,6 @@ You can easily help us by building patches, no C# compiling required. Check out 
 * Put RogueLoader beside the exe of choice and run it. (Will add a Process List soon)
 * Change textboxes to your liking.
 
-## Tested Versions
-* 1.0 Beta Build
-
 ### Here's a feature list of what it can do right now:
 1. Pattern scan and create patterns and patches to share with other users (pull requests!), see [PatchEditor](https://github.com/dark-c0de/DarkLoader/wiki/Patch-Editor)
 
@@ -26,7 +23,6 @@ You can easily help us by building patches, no C# compiling required. Check out 
 2. Hook into Scripts Engine To call scripts.
 3. etc anything else that might be needed.
 4. Get the game running without using a modified DLL.
-
 
 ### TODO
 If you're a developer and you can help dig into the code, here's some things that need to be done.
