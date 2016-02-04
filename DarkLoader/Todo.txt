@@ -12,6 +12,8 @@ Hook into potential console and scripts functions.
 00007FF67131989C | 48 8D 0D 85 62 1C 02     | lea rcx,qword ptr ds:[7FF6734DFB28]     | ;7FF6734DFB28:"native:ConsoleCommandWithOutput"
 
 
+
+
 Scripts
 
 00007FF671179210 | 48 8D 05 51 95 31 02     | lea rax,qword ptr ds:[7FF673492768]     | ;7FF673492768:"Begin a script"
