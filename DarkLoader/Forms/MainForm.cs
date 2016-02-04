@@ -133,7 +133,7 @@ namespace DarkLoader
             }
         }
 
-        private void LaunchArguments_TextChanged(object sender, EventArgs e)
+        private void LaunchArgumentsForm_TextChanged(object sender, EventArgs e)
         {
             RogueLoader.Properties.Settings.Default.LaunchArgs = LaunchArgumentsForm.Text;
         }
@@ -148,7 +148,5 @@ namespace DarkLoader
             LogFile.WriteToLog("Saved Settings!");
             RogueLoader.Properties.Settings.Default.Save();
         }
-
-
     }
 }

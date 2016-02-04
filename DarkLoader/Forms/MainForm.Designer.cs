@@ -107,6 +107,7 @@
             this.LaunchArgumentsForm.Name = "LaunchArgumentsForm";
             this.LaunchArgumentsForm.Size = new System.Drawing.Size(329, 21);
             this.LaunchArgumentsForm.TabIndex = 16;
+            this.LaunchArgumentsForm.TextChanged += new System.EventHandler(this.LaunchArgumentsForm_TextChanged);
             // 
             // MainForm
             // 
