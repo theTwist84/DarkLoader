@@ -101,8 +101,6 @@ namespace DarkLoader
             WeRunningYup = false;
         }
 
-        Forms.Splash splash;
-
 
         private void btnLaunchGeme_click()
         {

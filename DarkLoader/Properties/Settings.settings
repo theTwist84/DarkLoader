@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="LaunchArgs" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-window</Value>
+      <Value Profile="(Default)">-noserver -debugattach -debug</Value>
     </Setting>
     <Setting Name="GameName" Type="System.String" Scope="User">
       <Value Profile="(Default)">TheDivision.exe</Value>

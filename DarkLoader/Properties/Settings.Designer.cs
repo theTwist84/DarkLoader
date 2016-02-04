@@ -25,7 +25,7 @@ namespace RogueLoader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-window")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-noserver -debugattach -debug")]
         public string LaunchArgs {
             get {
                 return ((string)(this["LaunchArgs"]));
