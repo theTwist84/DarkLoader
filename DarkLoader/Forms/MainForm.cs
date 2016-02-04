@@ -38,10 +38,9 @@ namespace DarkLoader
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LogFile.WriteToLog("------------- Started DarkLoader -------------");
-            GoogleAnalyticsApi.TrackPageview("MainForm.cs", "MainForm_Load", "");
+            LogFile.WriteToLog("------------- Started RogueLoader -------------");
 
-            txtHaloLaunchArguments.Text = Properties.Settings.Default.HOLaunchArguments;
+            txtHaloLaunchArguments.Text = RogueLoader.Properties.Settings.Default.HOLaunchArguments;
             Thread loadPatches = new Thread(MagicPatches.LoadPatches);
             loadPatches.Start();
             WeRunningYup = true;
@@ -121,8 +120,8 @@ namespace DarkLoader
                             process.WaitForExit();
                         }
                         string FrostLog = File.ReadAllText(FrostLogFile);
-                        File.Delete(FrostLogFile + "-DarkBackup.log");
-                        File.Move(FrostLogFile, FrostLogFile + "-DarkBackup.log");
+                        File.Delete(FrostLogFile + "-RogueBackup.log");
+                        File.Move(FrostLogFile, FrostLogFile + "-RogueBackup.log");
 
                         if (FrostLog != "")
                         {
@@ -144,14 +143,12 @@ namespace DarkLoader
                         inLauncherLoop = true;
                         Thread launcherLoop = new Thread(KillFrostLauncherLoop);
                         launcherLoop.Start();
-                        GoogleAnalyticsApi.TrackEvent("MainForm.cs", "FrostWatcher", "Started Halo Online from 4game");
                         LaunchHaloOnline();
                         inLauncherLoop = false;
                     }
                 }
                 catch (Exception e)
                 {
-                    GoogleAnalyticsApi.TrackEvent("Errors", "FrostWatcher", e.Message);
                 }
             }
         }
@@ -184,33 +181,32 @@ namespace DarkLoader
         }
         private void CheckForUpdates()
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "CheckForUpdates", "");
-            var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Versions.json";
+            var url = "https://raw.githubusercontent.com/no1dead/RogueLoader/master/RogueLoader-Versions.json";
             try
             {
                 var versionJson = (new WebClient()).DownloadString(url);
                 FileVersions.NewFiles = JsonConvert.DeserializeObject<FileVersions.Files>(versionJson);
-                FileVersions.OldFiles = JsonConvert.DeserializeObject<FileVersions.Files>(File.ReadAllText("DarkLoader-Versions.json"));
-                FileVersions.File file = FileVersions.FindNewByFilename("DarkLoader.exe");
+                FileVersions.OldFiles = JsonConvert.DeserializeObject<FileVersions.Files>(File.ReadAllText("RogueLoader-Versions.json"));
+                FileVersions.File file = FileVersions.FindNewByFilename("RogueLoader.exe");
                 Version newVersion = Version.Parse(file.version);
                 Version currentVersion = Version.Parse(Application.ProductVersion);
                 if (currentVersion < newVersion)
                 {
-                    this.Invoke(new MethodInvoker(delegate { this.Text = "DarkLoader - Update Available!"; }));
+                    this.Invoke(new MethodInvoker(delegate { this.Text = "RogueLoader - Update Available!"; }));
 
-                    DialogResult result1 = MessageBox.Show("There's a new version of DarkLoader available. Would you like to download it?", "Oh goody!", MessageBoxButtons.YesNo);
+                    DialogResult result1 = MessageBox.Show("There's a new version of RogueLoader available. Would you like to download it?", "Oh goody!", MessageBoxButtons.YesNo);
                     if (result1 == DialogResult.Yes)
                     {
                         Process.Start(file.url);
                     }
                 }
 
-                FileVersions.File patchesNew = FileVersions.FindNewByFilename("DarkLoader-Patches.json");
-                FileVersions.File patchesOld = FileVersions.FindOldByFilename("DarkLoader-Patches.json");
+                FileVersions.File patchesNew = FileVersions.FindNewByFilename("RogueLoader-Patches.json");
+                FileVersions.File patchesOld = FileVersions.FindOldByFilename("RogueLoader-Patches.json");
 
                 if (Convert.ToInt32(patchesNew.version) > Convert.ToInt32(patchesOld.version))
                 {
-                    DialogResult result1 = MessageBox.Show("There's new patches available for DarkLoader. Would you like to download them?", "Oh goody!", MessageBoxButtons.YesNo);
+                    DialogResult result1 = MessageBox.Show("There's new patches available for RogueLoader. Would you like to download them?", "Oh goody!", MessageBoxButtons.YesNo);
                     if (result1 == DialogResult.Yes)
                     {
                         DialogResult dialogResult = MessageBox.Show("Are you sure you want to download the latest Patch File? This will overwrite any changes you've made! If you haven't made any, you'll be fine. If you have, please backup your changes before hitting OK.", "Replace Patches?", MessageBoxButtons.YesNo);
@@ -222,7 +218,6 @@ namespace DarkLoader
                 }
             }
             catch (Exception e) {
-                GoogleAnalyticsApi.TrackEvent("Errors", "CheckForUpdates", e.Message);
             }
         }
         private void IsHaloRunning()
@@ -257,7 +252,6 @@ namespace DarkLoader
         }
         private void btnHaloClick_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnHaloClick_Click", "");
             Process.Start("https://forum.halo.click/index.php?/topic/234-program-darkloader/", "");
         }
 
@@ -270,7 +264,7 @@ namespace DarkLoader
 
         private void btnDarkLoad_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnDarkLoad_Click", "");
+
             if (listMapNames.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a map to load on the side list.", "DarkLoader");
@@ -341,7 +335,6 @@ namespace DarkLoader
 
                 if (PtrMpPatch.ToInt32() <= 0)
                 {
-                    GoogleAnalyticsApi.TrackEvent("MainForm.cs", "ForceLoadMap", "Failed to find PtrMpPatch!");
                     MessageBox.Show("Failed to find pointer... Go file a bug report.");
                     return;
 
@@ -373,7 +366,6 @@ namespace DarkLoader
             }
             catch (Exception ex)
             {
-                GoogleAnalyticsApi.TrackEvent("MainForm.cs", "ForceLoadMap", ex.Message);
                 MessageBox.Show("Something went wrong...\n" + ex.Message, "DarkLoader Error");
             }
             this.btnDarkLoad.Invoke(new MethodInvoker(delegate
@@ -386,7 +378,7 @@ namespace DarkLoader
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "MainForm_FormClosing","");
+
             WeRunningYup = false;
         }
         Forms.Splash splash;
@@ -394,7 +386,7 @@ namespace DarkLoader
         {
             btnLaunchHaloOnline.Enabled = false;
             btnLaunchHaloOnline.Text = "Launching...";
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnLaunchHaloOnline_Click", "");
+
             splash = new Forms.Splash();
             splash.Show();
             Thread startHalo = new Thread(LaunchHaloOnline);
@@ -453,7 +445,7 @@ namespace DarkLoader
                       {
                           splash.Hide();
                       }));
-                    GoogleAnalyticsApi.TrackEvent("MainForm.cs", "LaunchHaloOnline", e.Message);
+
                     MessageBox.Show("Failed to start Halo Online!\n\n" + e.Message, "Something bad happened.");
                 }
             }
@@ -463,7 +455,7 @@ namespace DarkLoader
                 {
                     splash.Hide();
                 }));
-                GoogleAnalyticsApi.TrackEvent("MainForm.cs", "LaunchHaloOnline", "Halo Already Running");
+
                 MessageBox.Show("Halo Online is already running!", "DarkLoader uh...");
             }
             this.Invoke(new MethodInvoker(delegate
@@ -476,13 +468,13 @@ namespace DarkLoader
 
         private void btnIssues_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnIssues_Click","");
-            Process.Start("https://github.com/dark-c0de/DarkLoader/issues", "");
+
+            Process.Start("https://github.com/no1dead/RogueLoader/issues", "");
         }
 
         private void btnHideHud_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnHideHud_Click", "");
+
             btnHideHud.Text = "Scanning";
             btnHideHud.Enabled = false;
 
@@ -494,7 +486,7 @@ namespace DarkLoader
 
         private void btnShowHud_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnShowHud_Click", "");
+
             btnShowHud.Text = "Scanning";
             btnShowHud.Enabled = false;
 
@@ -508,7 +500,7 @@ namespace DarkLoader
         PatchEditor patchy;
         private void btnPatchEditor_click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btnPatchEditor_click", "");
+
             if (!PatchEditor.FormShowing)
             {
                 patchy = new PatchEditor();
@@ -522,7 +514,7 @@ namespace DarkLoader
 
         private void btn4gamePlay_Click(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackEvent("MainForm.cs", "btn4gamePlay_Click", "");
+
             MessageBox.Show("Login to 4game and hit Play like you would normally load Halo Online. DarkLoader will catch it and DarkLoad so you can play online.");
             Process.Start("https://ru.4game.com/halo/play/");
         }
@@ -531,7 +523,7 @@ namespace DarkLoader
         {
             if (comboGameTypes.SelectedIndex > 0)
             {
-                GoogleAnalyticsApi.TrackEvent("MainForm.cs", "comboGameTypes_SelectedIndexChanged", comboGameTypes.SelectedItem.ToString());
+
             }
         }
 
@@ -539,14 +531,14 @@ namespace DarkLoader
         {
             if (comboGameModes.SelectedIndex > 0)
             {
-                GoogleAnalyticsApi.TrackEvent("MainForm.cs", "comboGameModes_SelectedIndexChanged", comboGameModes.SelectedItem.ToString());
+
             }
         }
 
         private void txtHaloLaunchArguments_TextChanged(object sender, EventArgs e)
         {
-           Properties.Settings.Default.HOLaunchArguments =  txtHaloLaunchArguments.Text;
-           Properties.Settings.Default.Save();
+            RogueLoader.Properties.Settings.Default.HOLaunchArguments =  txtHaloLaunchArguments.Text;
+            RogueLoader.Properties.Settings.Default.Save();
         }
     }
 }

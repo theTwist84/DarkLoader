@@ -20,7 +20,7 @@ namespace DarkLoader.Forms
 
         private void Splash_Load(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackPageview("Splash.cs", "Splash_Load", "");
+            System.Console.WriteLine("Wow This Shit Ran!");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace DarkLoader
 {
     static class Program
     {
-        public static string PatchFile = "DarkLoader-Patches.json";
+        public static string PatchFile = "RogueLoader-Patches.json";
 #if DEBUG
         public static bool IsDebug = true;
 #else
@@ -28,7 +28,7 @@ namespace DarkLoader
 
             if (!File.Exists(Application.StartupPath + @"\maps\tags.dat"))
             {
-                GoogleAnalyticsApi.TrackEvent("Idiot Check", "User started DarkLoader from the wrong folder", "");
+
                 MessageBox.Show("Please load DarkLoader from your Halo Online Installation Directory.", "Halo.Click - DarkLoader");
                 Application.Exit();
             }
@@ -42,30 +42,30 @@ namespace DarkLoader
 
         public static void GetVersionJson(bool force = false)
         {
-            GoogleAnalyticsApi.TrackEvent("Program.cs", "GetVersionJson", "");
+
             //If they don't have a version, let's download the latest from GitHub
-            if (!File.Exists("DarkLoader-Versions.json") || force)
+            if (!File.Exists("RogueLoader-Versions.json") || force)
             {
-                var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Versions.json";
+                var url = "https://raw.githubusercontent.com/no1dead/DarkLoader/master/RogueLoader-Versions.json";
                 try
                 {
                     var versionFile = (new WebClient()).DownloadString(url);
-                    File.WriteAllText("DarkLoader-Versions.json", versionFile);
+                    File.WriteAllText("RogueLoader-Versions.json", versionFile);
                 }
                 catch (Exception e)
                 {
-                    GoogleAnalyticsApi.TrackEvent("Errors", "GetVersionJson", e.Message);
+
                     MessageBox.Show("There was an error downloading the latest version file. Firewall?\n\n" + e.Message);
                 }
             }
         }
         public static void GetLatestPatchJson(bool force = false)
         {
-            GoogleAnalyticsApi.TrackEvent("Program.cs", "GetLatestPatchJson", "");
+
             //If they don't have a patch file, let's download the latest from GitHub
             if (!File.Exists(PatchFile) || force)
             {
-                var url = "https://raw.githubusercontent.com/dark-c0de/DarkLoader/master/DarkLoader-Patches.json";
+                var url = "https://raw.githubusercontent.com/no1dead/DarkLoader/master/DarkLoader-Patches.json";
                 try
                 {
                     var patchFile = (new WebClient()).DownloadString(url);
@@ -74,7 +74,7 @@ namespace DarkLoader
                 }
                 catch (Exception e)
                 {
-                    GoogleAnalyticsApi.TrackEvent("Errors", "GetLatestPatchJson", e.Message);
+
                     MessageBox.Show("There was an error downloading the latest " + PatchFile + ". Firewall?\n\n" + e.Message);
                 }
             }

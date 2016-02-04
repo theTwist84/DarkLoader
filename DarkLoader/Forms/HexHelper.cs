@@ -20,7 +20,6 @@ namespace DarkLoader.Forms
 
         private void HexHelper_Load(object sender, EventArgs e)
         {
-            GoogleAnalyticsApi.TrackPageview("HexHelper.cs", "HexHelper_Load", "");
             FormShowing = true;
         }
 
